@@ -15,3 +15,7 @@ The contract was compiled in Remix IDE and testing there, all frontend and backe
 ## Frontend
 
 I decided to use Bootstrap with containers and some structure in the HTML, but I made my own css rules to demostrate my skills in CSS too. 
+
+## Contract 
+The link for the contract in the eth scan its : https://ropsten.etherscan.io/address/0xb38B6F0F7b77Df0fa718776eba940d524eABAD0d
+It's says that is one contract with the same amount of bytes but that was my first deployed smart contract, sorry for that I didn't know it that I deployed in testnet before 
