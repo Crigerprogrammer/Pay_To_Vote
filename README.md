@@ -12,3 +12,6 @@ I did some testing in ganache before using Ropsten network.
 
 The contract was compiled in Remix IDE and testing there, all frontend and backend it's use with javascript usign web3 library to get values from the contract like the highest player and the amount of the highest player.
 
+## Frontend
+
+I decided to use Bootstrap with containers and some structure in the HTML, but I made my own css rules to demostrate my skills in CSS too. 
