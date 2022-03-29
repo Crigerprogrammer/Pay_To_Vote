@@ -2,6 +2,7 @@
 
 Hi, I'm Cristian and this is my simple dapp to develop a contrat that allows to contribute an amout and be the winner in a pay to vote game, basically if you are the highest voter you can't contribute more, only if other player contribute more eth.
 
+Link to see proyect : https://crigerprogrammer.github.io/Pay_To_Vote/
 
 # Contract
 
