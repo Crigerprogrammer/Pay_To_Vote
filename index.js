@@ -4,6 +4,7 @@ const log = (message) => {
   }
   const error = (message) => $('#log').addClass('error').text(message);
   
+  //Connecting to the contract and call the event, functions and variables from the contract
   const address = "0xb38B6F0F7b77Df0fa718776eba940d524eABAD0d";
   const abi = [ 
    { "anonymous": false, 
@@ -16,16 +17,8 @@ const log = (message) => {
      { "internalType": "address", "name": "_highetsPlayer", "type": "address" }, 
      { "internalType": "address", "name": "_beneficiary", "type": "address" }],
       "stateMutability": "view", "type": "function" }];
-  const waitForReceipt = (hash, cb) => {
-    // txn.on('transactionHash', (hash) => {
-    //   log('Transaction submitted successfully. waiting for confirmation')
-    // })
-    //   .on('confirmation', () => {
-    //     log('Transaction Confirmed')
-    //   })
-    //   .on('error', (error) => {
-    //     error('Transaction Failed', error.message)
-    // });
+
+    const waitForReceipt = (hash, cb) => {
     web3.eth.getTransactionReceipt(hash, (err, receipt) => {
       if (err) return error(err);
       if (!receipt) {
@@ -61,19 +54,12 @@ const log = (message) => {
           method: 'wallet_switchEthereumChain',
           params: [{ chainId: '0x3' }],
         }).catch((err) => {
-          // add polygon mumbai network to metamask if not already added
-          // if (err.code === 4902) {
-          //   ethereum.request({
-          //     method: 'wallet_addEthereumChain',
-          //     params: [{ chainName: 'Polygon Mumbai', chainId: '0x13881', rpcUrls: ['https://rpc-mumbai.maticvigil.com/'] }]
-          //   }).catch((err) => error(err.message));
-          // } else {
-          //   error(err.message);
-          // }
           error(err.message);
         });
   
       }
+
+      //Calling HTML and change it for the current price or winner
       log("Connected to the Ropsten test network.");
       vote = new web3.eth.Contract(abi, address);
       vote.methods.getDetails().call().then((res) => {
@@ -83,7 +69,8 @@ const log = (message) => {
     } else {
       error("Unable to find web3. Please run MetaMask or something else that injects web3.");
     }
-  
+    
+    //Button event 
     $('#vote').click((e) => {
       e.preventDefault();
       if (!web3.eth.defaultAccount) return error("No accounts found. If you're using MetaMask, please unlock it first and reload the page.");
