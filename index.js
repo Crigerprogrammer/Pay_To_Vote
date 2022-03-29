@@ -75,10 +75,10 @@ const log = (message) => {
   
       }
       log("Connected to the Ropsten test network.");
-      auction = new web3.eth.Contract(abi, address);
-      auction.methods.getDetails().call().then((res) => {
-        $('#getHighestPlayer').text(`${res._highetsPlayer / 1e18} ETH`);
-        $('#getHighestVote').text(res._higestVote);
+      vote = new web3.eth.Contract(abi, address);
+      vote.methods.getDetails().call().then((res) => {
+        $('#getHighestVote').text(`${res._higestVote / 1e18} ETH`);
+        $('#getHighestPlayer').text(res._highetsPlayer);
       }).catch((err) => error(err.message));
     } else {
       error("Unable to find web3. Please run MetaMask or something else that injects web3.");
@@ -89,9 +89,9 @@ const log = (message) => {
       if (!web3.eth.defaultAccount) return error("No accounts found. If you're using MetaMask, please unlock it first and reload the page.");
       const bidTxObject = {
         from: web3.eth.defaultAccount,
-        value: web3.utils.toWei(document.getElementById("amount").value, "ether"),
+        value: web3.utils.toWei(document.getElementById("voteAmount").value, "ether"),
       };
-      auction.methods.bid().send(bidTxObject, (err, hash) => {
+      vote.methods.vote().send(bidTxObject, (err, hash) => {
         log("Transaction On its Way...");
         if (err) return error(err.message);
         waitForReceipt(hash, () => {
